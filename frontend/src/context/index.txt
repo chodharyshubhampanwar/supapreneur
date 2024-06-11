@@ -1,0 +1,2 @@
+
+help me with this i am trying to build a platform for vc and founders that will have directory of vc profile, founder profiles, startup profiles (with upvoting functionality like product hunt),  vc funds ratings (like landscape.vc) use vite react , mongo db, express and styled compoent s, firebase for auth , make code highly scalable, modern , production grade and best practices
