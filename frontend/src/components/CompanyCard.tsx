@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import { useState } from "react";
+import styled from "styled-components";
 import { Company, UpvoteButtonProps } from "../types/types";
 import { FaArrowUp } from "react-icons/fa";
 
@@ -47,12 +47,6 @@ const Tag = styled.span`
   font-weight: medium;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
 `;
 
 const UpvoteSection = styled.div`

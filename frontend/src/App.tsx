@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import CompanyCard from "./components/CompanyCard";
 import { Company } from "./types/types"; // Adjust the path as necessary
