@@ -1,7 +1,32 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { Company, UpvoteButtonProps } from "../types/types";
-import { FaArrowUp } from "react-icons/fa";
+import { CompanyCardProps } from "../types/types";
+import UpvoteButton from "../components/UpvoteButton"; // Correct import of UpvoteButton
+
+const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
+  return (
+    <>
+      {companies.map((company) => (
+        <Card key={company._id}>
+          <Logo src={company.logo} alt={company.name} />
+          <Content>
+            <Title>{company.name}</Title>
+            <Description>{company.description}</Description>
+            <Tags>
+              {company.tags.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </Tags>
+          </Content>
+          <UpvoteSection>
+            <UpvoteButton company={company} />
+          </UpvoteSection>
+        </Card>
+      ))}
+    </>
+  );
+};
+
+export default CompanyCard;
 
 const Card = styled.div`
   display: flex;
@@ -51,52 +76,6 @@ const Tag = styled.span`
 
 const UpvoteSection = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-left: 1rem;
+  margin-top: 0.5rem;
 `;
-
-const UpvoteButton = styled.button<UpvoteButtonProps>`
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: ${(props) => (props.upvoted ? "#2b6cb0" : "#a0aec0")};
-  font-size: 1.25rem;
-`;
-
-const CompanyCard = ({ company }: { company: Company }) => {
-  const [upvotes, setUpvotes] = useState(company.upvotes || 0);
-  const [upvoted, setUpvoted] = useState(false);
-
-  const handleUpvote = () => {
-    if (upvoted) {
-      setUpvotes(upvotes - 1);
-    } else {
-      setUpvotes(upvotes + 1);
-    }
-    setUpvoted(!upvoted);
-  };
-
-  return (
-    <Card>
-      <Logo src={company.logo} alt={company.name} />
-      <Content>
-        <Title>{company.name}</Title>
-        <Description>{company.description}</Description>
-        <Tags>
-          {company.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </Tags>
-      </Content>
-      <UpvoteSection>
-        <UpvoteButton onClick={handleUpvote} upvoted={upvoted}>
-          <FaArrowUp />
-        </UpvoteButton>
-        <span>{upvotes}</span>
-      </UpvoteSection>
-    </Card>
-  );
-};
-
-export default CompanyCard;

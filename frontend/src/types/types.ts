@@ -1,12 +1,5 @@
-export interface SocialLinks {
-  twitter: string;
-  facebook: string;
-  instagram: string;
-  linkedin: string;
-}
 
 export interface Company {
-  social: SocialLinks;
   _id: string;
   name: string;
   description: string;
@@ -18,8 +11,13 @@ export interface Company {
   createdAt: string;
   updatedAt: string;
   __v: number;
+
+}
+
+export interface CompanyCardProps {
+  companies: Company[];
 }
 
 export interface UpvoteButtonProps {
-  upvoted: boolean;
+  company: Company;
 }

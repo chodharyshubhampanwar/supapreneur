@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-import { Schema } from "mongoose";
-
-const CompanySchema = new Schema({
+const CompanySchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Company name is required"],

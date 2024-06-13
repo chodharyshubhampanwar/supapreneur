@@ -1,4 +1,5 @@
 import { Router } from "express";
+import auth from "../middleware/auth.js";
 import {
   getCompanies,
   createCompany,
@@ -9,6 +10,6 @@ const router = Router();
 
 router.get("/companies", getCompanies);
 router.post("/companies", createCompany);
-router.put("/companies/:id/upvote", upvoteCompany);
+router.put("/companies/:id/upvote", auth, upvoteCompany);
 
 export default router;

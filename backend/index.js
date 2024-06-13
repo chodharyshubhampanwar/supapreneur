@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import companyRouter from "./routes/companyRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1", companyRouter);
+app.use("/api/v1", userRouter);
 
 connectDB().then(() => {
   const port = process.env.PORT || 5000;
