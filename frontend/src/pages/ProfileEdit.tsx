@@ -67,11 +67,7 @@ const ErrorMessage = styled.span`
 `;
 
 const ProfileEdit = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: zodResolver(ProfileSchema),
   });
 
