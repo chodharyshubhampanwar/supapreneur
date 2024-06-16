@@ -4,22 +4,18 @@ export const createUser = async (req, res) => {
   try {
     const { email, username, firebaseId, type } = req.body;
 
-    const newUser = new User({
-      email,
-      username,
-      firebaseId,
-      type,
-    });
+    let user = await User.findOne({ email });
 
-    await newUser.save();
-    res.status(201).json({
-      message: "User created successfully",
-      user: newUser,
-    });
+    if (!user) {
+      user = new User({ email, username, firebaseId, type });
+      await user.save();
+      res.status(201).json({ message: "User created successfully", user });
+    } else {
+      res.status(200).json({ message: "User signed in successfully", user });
+    }
   } catch (error) {
-    res.status(500).json({
-      message: "Error creating user",
-      error: error.message,
-    });
+    res
+      .status(500)
+      .json({ message: "Error processing request", error: error.message });
   }
 };

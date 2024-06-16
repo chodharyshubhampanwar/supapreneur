@@ -62,3 +62,17 @@ export const upvoteCompany = async (req, res) => {
     res.status(500).json({ error: "Failed to update upvote" });
   }
 };
+
+export const getCompany = async (req, res) => {
+  const slug = req.params.slug;
+  try {
+    const company = await Company.findOne({ slug });
+    if (!company) {
+      return res.status(404).json({ error: "Company not found" });
+    }
+    res.json(company);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to get company" });
+  }
+};

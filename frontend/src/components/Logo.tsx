@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
 
@@ -19,11 +18,7 @@ const StyledLogo = styled.img`
 `;
 
 const Logo: React.FC = () => {
-  return (
-    <Link to="/hello">
-      <StyledLogo src={logo} alt="main-logo" />
-    </Link>
-  );
+  return <StyledLogo src={logo} alt="main-logo" />;
 };
 
 export default Logo;

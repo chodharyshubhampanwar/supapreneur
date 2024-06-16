@@ -1,26 +1,4 @@
-// import admin from "../config/firebaseAdmin.js";
-
-// const auth = async (req, res, next) => {
-//   const authHeader = req.headers.authorization;
-
-//   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-//     return res.status(401).json({ error: "Unauthorized" });
-//   }
-//   const token = authHeader.split(" ")[1];
-//   try {
-//     const decodedToken = await admin.auth().verifyIdToken(token);
-//     req.user = { userId: decodedToken.uid };
-
-//     next();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export default auth;
-
 import { validateToken } from "../utils/tokenValidation.js";
-
 const auth = async (req, res, next) => {
   try {
     const userId = await validateToken(req.headers.authorization);
@@ -33,3 +11,19 @@ const auth = async (req, res, next) => {
 };
 
 export default auth;
+
+// export const authorizeProfileOwner = async (req, res, next) => {
+//   try {
+//     const profile = await Profile.findById(req.params.id);
+//     if (profile.userId.toString() !== req.user.id) {
+//       return res
+//         .status(403)
+//         .json({ message: "Forbidden: You do not own this profile" });
+//     }
+//     next();
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ message: "Authorization error", error: error.message });
+//   }
+// };

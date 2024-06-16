@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { signInWithGoogle } from "../services/authService"; // Import from authService instead of AuthContext
+import { signInWithGoogle } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const SignInButton = styled.button`
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #161cbb;
   color: white;
   border: none;
   border-radius: 5px;
@@ -13,7 +14,31 @@ const SignInButton = styled.button`
 `;
 
 const SignIn: React.FC = () => {
-  return <SignInButton onClick={signInWithGoogle}>Sign In</SignInButton>;
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleSignIn = async () => {
+    setIsLoading(true);
+    try {
+      await signInWithGoogle();
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+      setError("Failed to sign in. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <SignInButton onClick={handleSignIn} disabled={isLoading}>
+        {isLoading ? "Signing In..." : "Sign In"}
+      </SignInButton>
+      {error && <p>{error}</p>}
+    </div>
+  );
 };
 
 export default SignIn;

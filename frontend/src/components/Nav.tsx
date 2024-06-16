@@ -9,17 +9,17 @@ export const Nav = () => {
   return (
     <>
       <DesktopNav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/investors">Investors</NavLink>
+        <NavLink to="/founders">Founders</NavLink>
+        <NavLink to="/operators">Operators</NavLink>
       </DesktopNav>
       <NavIcon onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </NavIcon>
       <MobileNav isOpen={isOpen}>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/investors">Investors</NavLink>
+        <NavLink to="/founders">Founders</NavLink>
+        <NavLink to="/operators">Operators</NavLink>
       </MobileNav>
     </>
   );
@@ -29,8 +29,9 @@ const NavIcon = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: block;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    color: #4b587c;
   }
 `;
 
