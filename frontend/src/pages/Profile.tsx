@@ -3,11 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ProfileSchema } from "../validators/userProfileSchema";
 
 const Profile = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: zodResolver(ProfileSchema),
   });
 
