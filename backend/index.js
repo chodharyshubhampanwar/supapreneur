@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter.js";
 import profileRouter from "./routes/profileRouter.js";
 import pitchRouter from "./routes/pitchRouter.js";
 import cron from "node-cron";
+import axios from "axios";
 
 dotenv.config();
 
@@ -34,7 +35,14 @@ connectDB().then(() => {
     });
 });
 
-cron.schedule("*/15 * * * *", () => {
-  console.log("api is active");
-  // Add the task you want to execute here
+cron.schedule("*/15 * * * *", async () => {
+  try {
+    const response = await axios.get("https://supapreneur-gfte.onrender.com/");
+    console.log(
+      "Cron job: API is running successfully. Response:",
+      response.data
+    );
+  } catch (error) {
+    console.error("Cron job: Failed to reach the API endpoint.", error);
+  }
 });
