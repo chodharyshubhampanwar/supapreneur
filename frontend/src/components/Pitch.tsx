@@ -13,7 +13,7 @@ const Pitch: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/${slug}/pitch`
+          `https://supapreneur-gfte.onrender.com/api/v1/${slug}/pitch`
         );
         setPitchData(response.data.pitch);
       } catch (error) {
