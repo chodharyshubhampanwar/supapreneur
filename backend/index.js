@@ -6,6 +6,7 @@ import companyRouter from "./routes/companyRouter.js";
 import userRouter from "./routes/userRouter.js";
 import profileRouter from "./routes/profileRouter.js";
 import pitchRouter from "./routes/pitchRouter.js";
+import cron from "node-cron";
 
 dotenv.config();
 
@@ -31,4 +32,9 @@ connectDB().then(() => {
     .on("error", (err) => {
       console.error(err);
     });
+});
+
+cron.schedule("*/15 * * * *", () => {
+  console.log("api is active");
+  // Add the task you want to execute here
 });
