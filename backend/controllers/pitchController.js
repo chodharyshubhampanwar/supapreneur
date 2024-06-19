@@ -30,12 +30,26 @@ export const createPitch = async (req, res) => {
 
 export const getPitch = async (req, res) => {
   try {
-    const { companyId } = req.body;
-    const pitch = await Pitch.findOne({ companyId });
-    if (!pitch) {
-      return res.status(404).json({ message: "Pitch not found" });
+    const { slug } = req.params;
+    const result = await Company.aggregate([
+      { $match: { slug: slug } },
+      {
+        $lookup: {
+          from: "pitches",
+          localField: "pitchId",
+          foreignField: "_id",
+          as: "pitch",
+        },
+      },
+      { $unwind: "$pitch" },
+      { $project: { _id: 0, pitch: "$pitch" } },
+    ]);
+
+    if (!result.length) {
+      return res.status(404).json({ message: "Company or Pitch not found" });
     }
-    res.status(200).json(pitch);
+
+    res.status(200).json(result[0]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });

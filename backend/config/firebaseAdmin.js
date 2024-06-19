@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const credentials = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, "./credentials.json"), "utf8")
+  fs.readFileSync(path.resolve(__dirname, "../credentials.json"), "utf8")
 );
 
 admin.initializeApp({

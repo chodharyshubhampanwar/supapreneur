@@ -13,18 +13,14 @@ const ProfileSchema = z.object({
   role: z.string().min(1, "Role is required"),
   interests: z.array(z.string().min(1, "Each interest must be non-empty")),
   skills: z.array(z.string().min(1, "Each skill must be non-empty")),
-  education: z.array(
-    z.string().min(1, "Each education entry must be non-empty")
-  ),
-  experience: z.array(
-    z.string().min(1, "Each experience entry must be non-empty")
-  ),
+  education: z.string().min(1, "Each education entry must be non-empty"),
+  experience: z.string().min(1, "Each experience entry must be non-empty"),
   projects: z.array(
     z.string().min(1, "Each project description must be non-empty")
   ),
   isVerified: z.boolean().optional(),
   collaborating: z.boolean(),
-  criteria: z.array(z.string().min(1, "Each criterion must be non-empty")),
+  criteria: z.string().min(1, "Each criterion must be non-empty"),
 });
 
 const FormWrapper = styled.div`
@@ -69,10 +65,31 @@ const ErrorMessage = styled.span`
 const ProfileEdit = () => {
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(ProfileSchema),
+    defaultValues: {
+      name: "",
+      headline: "",
+      location: "",
+      image: "",
+      bio: "",
+      links: [],
+      role: "",
+      interests: [],
+      skills: [],
+      education: [],
+      experience: [],
+      projects: [],
+      isVerified: false,
+      collaborating: false,
+      criteria: [],
+    },
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    const modifiedData = {
+      ...data,
+      links: data.links.split(",").map((link: any) => link.trim()),
+    };
+    console.log(modifiedData);
   };
 
   return (
@@ -199,13 +216,18 @@ const ProfileEdit = () => {
             </>
           )}
         />
+
         <Controller
           name="isVerified"
           control={control}
           render={({ field }) => (
             <>
               <label>
-                <input type="checkbox" {...field} />
+                <input
+                  type="checkbox"
+                  checked={field.value}
+                  onChange={field.onChange}
+                />
                 Verified
               </label>
             </>
@@ -217,23 +239,18 @@ const ProfileEdit = () => {
           render={({ field, fieldState: { error } }) => (
             <>
               <label>
-                <input type="checkbox" {...field} />
+                <input
+                  type="checkbox"
+                  checked={field.value}
+                  onChange={field.onChange}
+                />
                 Collaborating
               </label>
               {error && <ErrorMessage>{error.message}</ErrorMessage>}
             </>
           )}
         />
-        <Controller
-          name="criteria"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <TextArea {...field} placeholder="Criteria (comma separated)" />
-              {error && <ErrorMessage>{error.message}</ErrorMessage>}
-            </>
-          )}
-        />
+
         <Button type="submit">Submit</Button>
       </form>
     </FormWrapper>
@@ -241,3 +258,4 @@ const ProfileEdit = () => {
 };
 
 export default ProfileEdit;
+

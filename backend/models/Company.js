@@ -62,12 +62,14 @@ const CompanySchema = new Schema(
       trim: true,
       index: true,
     },
-    pitchId: { type: Schema.Types.ObjectId, ref: "Pitch" },
+    pitchId: {
+      type: Schema.Types.ObjectId,
+      ref: "Pitch",
+    },
   },
   { timestamps: true }
 );
 
-// Pre-validation hook to ensure slug is generated
 CompanySchema.pre("validate", function (next) {
   if (this.isModified("name") || !this.slug) {
     this.slug = slugify(this.name, { lower: true, strict: true });

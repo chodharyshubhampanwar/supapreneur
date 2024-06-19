@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CompanyCardProps } from "../types/types";
 import UpvoteButton from "../components/UpvoteButton";
+import { convertStringCase } from "../utils/string-conversion";
 
 const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
   return (
@@ -29,7 +30,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
               {company.tags.map((tag, index) => (
                 <React.Fragment key={tag}>
                   <span className="text-blue-600 text-xs font-medium">
-                    {tag}
+                    {convertStringCase(tag, "capital")}
                   </span>
                   {index < company.tags.length - 1 && (
                     <span className="text-12 text-light-gray opacity-45">

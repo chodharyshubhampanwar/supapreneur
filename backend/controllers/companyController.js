@@ -13,26 +13,12 @@ export const createCompany = async (req, res) => {
 
 export const getCompanies = async (req, res) => {
   try {
-    const companies = await Company.find({});
+    const companies = await Company.find({}).sort({ upvotes: -1 }).limit(30);
     res.json({ companies });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
-// export const checkUserUpvoted = async (req, res) => {
-//   const companyId = req.params.id;
-//   const userId = req.user.userId;
-//   console.log(userId, companyId);
-
-//   try {
-//     const upvote = await Upvote.findOne({ userId, companyId });
-//     res.json({ upvoted: !!upvote });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Failed to check upvote status" });
-//   }
-// };
 
 export const upvoteCompany = async (req, res) => {
   const companyId = req.params.id;

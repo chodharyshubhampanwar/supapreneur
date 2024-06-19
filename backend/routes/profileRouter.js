@@ -9,7 +9,6 @@ import auth from "../middleware/auth.js";
 const router = Router();
 
 router.post("/profile", createProfileHandler);
-router.get("/profile/:id", getProfileHandler);
-// Add more routes here for update, delete, etc.
+router.get("/profile/:username", getProfileHandler);
 
 export default router;

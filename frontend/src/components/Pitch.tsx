@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useCompany } from "../context/CompanyContext";
 
-interface PitchProps {
-  companyId?: string;
-}
-
-const Pitch: React.FC<PitchProps> = ({ companyId }) => {
+const Pitch: React.FC = () => {
+  const company = useCompany();
+  const { slug } = company;
   const [pitchData, setPitchData] = useState<any>(null);
 
-  console.log(companyId);
+  console.log(slug);
 
   useEffect(() => {
-    const fetchPitchData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/pitch`, {
-          params: { companyId: companyId },
-        });
-        setPitchData(response.data);
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/${slug}/pitch`
+        );
+        setPitchData(response.data.pitch);
       } catch (error) {
-        console.error("Failed to fetch pitch data:", error);
+        console.error("Failed to fetch data:", error);
       }
     };
 
-    fetchPitchData();
-  }, [companyId]);
+    fetchData();
+  }, [slug]);
 
   if (!pitchData) return <div>Loading...</div>;
 

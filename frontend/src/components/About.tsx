@@ -9,14 +9,12 @@ import {
 } from "react-icons/fa";
 import { HiMiniMapPin, HiLink } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { useCompany } from "../context/CompanyContext"; // Adjust the import path accordingly
 
-interface Props {
-  location?: string;
-  founded?: string;
-  links?: { [key: string]: string };
-}
+const About: React.FC = () => {
+  const company = useCompany();
+  const { location, founded, links } = company;
 
-const About: React.FC<Props> = ({ location, founded, links }) => {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2">

@@ -1,12 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Landing from "../pages/Landing";
 import CompanyHome from "../pages/Company";
-import Profile from "../pages/Profile";
 import ProfileEdit from "../pages/ProfileEdit";
 import Pitch from "../components/Pitch";
 import About from "../components/About";
+import ProfilePage from "../pages/Profile";
+
+// Import other tab components here
 
 interface RouteObject {
+  exact?: boolean;
   path: string;
   element: JSX.Element;
   children?: RouteObject[];
@@ -16,6 +19,7 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: <Landing />,
+    exact: true,
   },
   {
     path: "/company/:slug",
@@ -32,8 +36,8 @@ const routes: RouteObject[] = [
     ],
   },
   {
-    path: "/profile/",
-    element: <Profile />,
+    path: "/:username",
+    element: <ProfilePage />,
   },
   {
     path: "/profile/edit",

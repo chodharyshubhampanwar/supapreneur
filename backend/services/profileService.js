@@ -1,15 +1,11 @@
 import FounderProfile from "../models/FounderProfile.js";
-import User from "../models/User.js";
 
-export const getProfile = async (id) => {
-  const user = await User.findById(id).populate("profile");
-  if (!user) {
-    throw new Error("User not found");
-  }
-  if (!user.profile) {
+export const getProfile = async (username) => {
+  const profile = await FounderProfile.findOne({ username });
+  if (!profile) {
     throw new Error("Profile not found for this user");
   }
-  return user.profile;
+  return profile;
 };
 
 export const createProfile = async (profileData) => {

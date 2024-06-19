@@ -1,77 +1,52 @@
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ProfileSchema } from "../validators/userProfileSchema";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Profile } from "../types/types";
 
-const Profile = () => {
-  const { control, handleSubmit } = useForm({
-    resolver: zodResolver(ProfileSchema),
-  });
+const ProfilePage: React.FC = () => {
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const { username } = useParams<{ username: string }>();
+  const { user } = useAuth();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const res = await axios.get(
+        `http://localhost:5000/api/v1/profile/${username}`
+      );
+      setProfile(res.data.profile);
+    };
+    fetchProfile();
+  }, [username]);
 
   return (
-    <div className="flex flex-col items-center p-5 max-w-md mx-auto">
-      <h1 className="text-xl font-bold">Profile Form</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <Controller
-          name="name"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <input
-                {...field}
-                placeholder="Name"
-                className="my-2 p-2 w-full box-border"
-              />
-              {error && (
-                <span className="text-red-600 text-sm">{error.message}</span>
-              )}
-            </>
+    <div className="p-4">
+      {profile && (
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 p-4">
+          <div className="flex items-center">
+            <img
+              className="w-10 h-10 rounded-full mr-4"
+              src={profile.avatar}
+              alt={profile.name}
+            />
+            <div className="text-sm">
+              <p className="text-2xl font-bold mb-2">{profile.name}</p>
+              <p className="text-gray-500">{profile.headline}</p>
+              <p className="text-gray-500">{profile.location}</p>
+            </div>
+          </div>
+          <p className="mt-2 text-gray-500">{profile.bio}</p>
+          {user?.uid === profile.uid && (
+            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <a href="/my/details/edit" className="text-white">
+                Edit Profile
+              </a>
+            </button>
           )}
-        />
-        <Controller
-          name="headline"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <input
-                {...field}
-                placeholder="Headline"
-                className="my-2 p-2 w-full box-border"
-              />
-              {error && (
-                <span className="text-red-600 text-sm">{error.message}</span>
-              )}
-            </>
-          )}
-        />
-        <Controller
-          name="location"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <input
-                {...field}
-                placeholder="Location"
-                className="my-2 p-2 w-full box-border"
-              />
-              {error && (
-                <span className="text-red-600 text-sm">{error.message}</span>
-              )}
-            </>
-          )}
-        />
-        <button
-          type="submit"
-          className="px-5 py-2 bg-blue-600 text-white border-none cursor-pointer hover:bg-blue-700"
-        >
-          Submit
-        </button>
-      </form>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Profile;
+export default ProfilePage;

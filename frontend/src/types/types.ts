@@ -50,3 +50,25 @@ export interface UserProfile {
   collaborating: boolean;
   criteria: string[];
 }
+
+
+export interface Profile {
+  _id: string;
+  name: string;
+  headline: string;
+  location: string;
+  bio: string;
+  links: string[];
+  role: string;
+  interests: string[];
+  skills: string[];
+  education: string[];
+  experience: string[];
+  projects: string[];
+  isVerified: boolean;
+  collaborating: boolean;
+  criteria: string[];
+  uid: string;
+  avatar: string;
+  username: string;
+}
