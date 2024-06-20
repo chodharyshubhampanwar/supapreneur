@@ -61,7 +61,7 @@ export default function Landing() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://supapreneur-gfte.onrender.com/api/v1/companies"
+          "https://jf28e8wnr6.execute-api.ap-south-1.amazonaws.com/default/getCompanies"
         );
         setCompanies(response.data.companies);
         setIsLoading(false);
