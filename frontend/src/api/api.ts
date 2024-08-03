@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const BASE_URL = "https://api.leikhub.com/";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -12,6 +12,7 @@ axiosInstance.interceptors.request.use(
     const auth = getAuth();
     if (auth.currentUser) {
       const token = await auth.currentUser.getIdToken();
+
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
         config.headers["Content-Type"] = "application/json";
@@ -65,6 +66,12 @@ export const createUser = async (
 export const getUserProfile = async (id: string) => {
   const response = await axiosInstance.get(`/profile/${id}`);
   return response.data;
+};
+
+export const getCompanies = async (slug: string) => {
+  const response = await axiosInstance.get(`/${slug}`);
+  console.log("Response====>: ", response.data.body);
+  return response.data.body;
 };
 
 export default axiosInstance;

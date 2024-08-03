@@ -14,7 +14,7 @@ const CompanyHome: React.FC = () => {
   useEffect(() => {
     const fetchCompany = async () => {
       const response = await fetch(
-        `https://supapreneur-gfte.onrender.com/api/v1/companies/${slug}`
+        `https://api.leikhub.com/api/v1/companies/${slug}`
       );
       const data = await response.json();
       setCompany(data);

@@ -1,43 +1,47 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { signInWithGoogle } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Amplify } from "aws-amplify";
+import { Authenticator } from "@aws-amplify/ui-react";
+import { fetchAuthSession } from "aws-amplify/auth";
+import "@aws-amplify/ui-react/styles.css";
 
-const SignInButton = styled.button`
-  padding: 10px 20px;
-  background-color: #161cbb;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-`;
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      userPoolClientId: "5olt89m31loa21lhnd68q0a1t3",
+      userPoolId: "ap-south-1_NDLZEfqd1",
+    },
+  },
+});
 
 const SignIn: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const [accessToken, setAccessToken] = useState<string>("");
 
-  const handleSignIn = async () => {
-    setIsLoading(true);
-    try {
-      await signInWithGoogle();
-      navigate("/dashboard");
-    } catch (error) {
-      console.error(error);
-      setError("Failed to sign in. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    const getSession = async () => {
+      try {
+        const session = await fetchAuthSession();
+        const token = session.tokens?.idToken?.toString();
+        console.log(token);
+        if (token) {
+          setAccessToken(token);
+        }
+      } catch (error) {
+        console.error("Error fetching session:", error);
+      }
+    };
+    getSession();
+  }, []);
 
   return (
-    <div>
-      <SignInButton onClick={handleSignIn} disabled={isLoading}>
-        {isLoading ? "Signing In..." : "Sign In"}
-      </SignInButton>
-      {error && <p>{error}</p>}
-    </div>
+    <Authenticator loginMechanisms={["email"]}>
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user?.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+          {accessToken && <p>Access Token: {accessToken}</p>}
+        </main>
+      )}
+    </Authenticator>
   );
 };
 

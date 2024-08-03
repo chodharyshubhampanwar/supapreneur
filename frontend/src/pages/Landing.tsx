@@ -47,29 +47,73 @@
 //   );
 // }
 
+// import { useState, useEffect } from "react";
+// import Header from "../components/Header";
+// import CompanyCard from "../components/CompanyCard";
+// import { Company } from "../types/types";
+// import { getCompanies } from "../api/api";
+
+// export default function Landing() {
+//   const [isLoading, setIsLoading] = useState(true);
+//   const [companies, setCompanies] = useState<Company[]>([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await getCompanies();
+//         setCompanies(response.companies);
+//         setIsLoading(false);
+//       } catch (error) {
+//         console.error("Error fetching data: ", error);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div className="min-h-screen mx-auto w-full max-w-[1200px]">
+//       <Header />
+//       <div className="box-border flex w-full overflow-hidden ">
+//         <main className="flex-1 p-4 overflow-y-auto border-r-2 border-r-indigo-90">
+//           <CompanyCard companies={companies} />
+//         </main>
+//         <aside className="hidden lg:flex flex-col p-4 bg-gray-100">
+//           <div>Content for Aside</div>
+//           <footer className="mt-auto p-4 bg-gray-200">Footer Content</footer>
+//         </aside>
+//       </div>
+//     </div>
+//   );
+// }
+
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Header from "../components/Header";
 import CompanyCard from "../components/CompanyCard";
 import { Company } from "../types/types";
+import { getCompanies } from "../api/api";
+import SignIn from "../components/SingIn";
 
 export default function Landing() {
   const [isLoading, setIsLoading] = useState(true);
   const [companies, setCompanies] = useState<Company[]>([]);
+  const slug = "test-company";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://jf28e8wnr6.execute-api.ap-south-1.amazonaws.com/default/getCompanies"
-        );
-        setCompanies(response.data.companies);
+        const response = await getCompanies(slug);
+        setCompanies(response.companies);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
+        setIsLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -85,7 +129,7 @@ export default function Landing() {
           <CompanyCard companies={companies} />
         </main>
         <aside className="hidden lg:flex flex-col p-4 bg-gray-100">
-          <div>Content for Aside</div>
+          <SignIn />
           <footer className="mt-auto p-4 bg-gray-200">Footer Content</footer>
         </aside>
       </div>
