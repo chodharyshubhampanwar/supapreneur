@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { HiOutlineBars3, HiOutlineUserCircle } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import Sign from "../components/SingIn";
+// import Sign from "../components/SingIn";
 import SocialLogin from "../components/SingIn";
 
 const Header: React.FC = () => {
