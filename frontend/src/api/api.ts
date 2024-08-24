@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 
-const BASE_URL = "https://api.leikhub.com/";
+const BASE_URL = "https://pwuk9ijj3c.execute-api.us-east-1.amazonaws.com/dev/companies";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -70,8 +70,7 @@ export const getUserProfile = async (id: string) => {
 
 export const getCompanies = async (slug: string) => {
   const response = await axiosInstance.get(`/${slug}`);
-  console.log("Response====>: ", response.data.body);
-  return response.data.body;
+  return response.data
 };
 
 export default axiosInstance;

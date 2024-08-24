@@ -2,7 +2,7 @@ export interface Company {
   links: { [key: string]: string };
   isVerified: boolean;
   _id: string;
-  name: string;
+  company_name: string;
   upvotes: number;
   tags: string[];
   logo: string;

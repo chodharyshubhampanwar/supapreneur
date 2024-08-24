@@ -6,8 +6,6 @@ import Pitch from "../components/Pitch";
 import About from "../components/About";
 import ProfilePage from "../pages/Profile";
 
-// Import other tab components here
-
 interface RouteObject {
   exact?: boolean;
   path: string;

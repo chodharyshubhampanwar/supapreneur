@@ -4,6 +4,7 @@ import { HiOutlineBars3, HiOutlineUserCircle } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import Sign from "../components/SingIn";
+import SocialLogin from "../components/SingIn";
 
 const Header: React.FC = () => {
   const { user } = useAuth();
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
               <HiOutlineUserCircle size={32} />
             </Link>
           ) : (
-            <Sign />
+            <SocialLogin />
           )}
         </div>
       </div>

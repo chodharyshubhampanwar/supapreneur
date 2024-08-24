@@ -11,14 +11,14 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
         <div key={company._id} className="flex items-start py-2">
           <img
             src={company.logo}
-            alt={company.name}
+            alt={company.company_name}
             className="w-12 h-12 rounded-md mr-4"
           />
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col">
               <Link to={`/company/${company.slug}`}>
                 <strong className="text-base font-semibold leading-6">
-                  {company.name}
+                  {company.company_name}
                 </strong>
               </Link>
 
@@ -26,7 +26,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
                 {company.tagline}
               </p>
             </div>
-            <div className="flex flex-wrap gap-2 items-center">
+            {/* <div className="flex flex-wrap gap-2 items-center">
               {company.tags.map((tag, index) => (
                 <React.Fragment key={tag}>
                   <span className="text-blue-600 text-xs font-medium">
@@ -39,7 +39,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
                   )}
                 </React.Fragment>
               ))}
-            </div>
+            </div> */}
           </div>
           <UpvoteButton company={company} />
         </div>
