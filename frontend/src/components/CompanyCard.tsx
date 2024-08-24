@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CompanyCardProps } from "../types/types";
 import UpvoteButton from "../components/UpvoteButton";
-import { convertStringCase } from "../utils/string-conversion";
+// import { convertStringCase } from "../utils/string-conversion";
 
 const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
   return (
