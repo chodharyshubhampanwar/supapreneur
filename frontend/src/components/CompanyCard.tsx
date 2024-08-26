@@ -8,17 +8,17 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
   return (
     <>
       {companies.map((company) => (
-        <div key={company._id} className="flex items-start py-2">
+        <div key={company.id} className="flex items-start py-2">
           <img
             src={company.logo}
-            alt={company.company_name}
+            alt={company.title}
             className="w-12 h-12 rounded-md mr-4"
           />
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col">
               <Link to={`/company/${company.slug}`}>
                 <strong className="text-base font-semibold leading-6">
-                  {company.company_name}
+                  {company.title}
                 </strong>
               </Link>
 

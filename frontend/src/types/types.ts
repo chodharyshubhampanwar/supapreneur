@@ -1,28 +1,31 @@
 export interface Company {
-  links: { [key: string]: string };
-  isVerified: boolean;
-  _id: string;
-  company_name: string;
-  upvotes: number;
-  tags: string[];
-  logo: string;
-  location: string;
-  createdAt: string;
-  updatedAt: string;
+   id: string;
+  title: string;
+   employees: Employee[];
   tagline: string;
-  stage?: string;
-  teamSize?: string;
-  founded?: string;
-  images?: string[];
-  video?: string;
-  amount?: string;
-  pricing?: string;
-  businessModel?: string;
-  status?: string;
-  slug?: string;
-  website?: string;
-  __v?: number;
+  tags: string[];
+  date_founded: string;
+  stage: string;
+  links: {
+    website?: string;
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+  };
+  slug: string;
+  location: string;
+  region: string;
+  logo: string;
+  sector: string;
 }
+
+interface Employee {
+  id: string;
+  name: string;
+  role: string;
+}
+
+
 
 export interface CompanyCardProps {
   companies: Company[];
