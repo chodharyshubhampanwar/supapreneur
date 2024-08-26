@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           </Link>
         </nav>
         <div className="flex items-center">
-          {user ? (
+          {/* {user ? (
             <Link
               to={`/${user.email?.toLowerCase()}`}
               className="text-gray-700 hover:text-gray-900"
@@ -42,8 +42,9 @@ const Header: React.FC = () => {
               <HiOutlineUserCircle size={32} />
             </Link>
           ) : (
-            <SocialLogin />
-          )}
+
+          )} */}
+          <SocialLogin />
         </div>
       </div>
     </header>

@@ -7,12 +7,11 @@ import { getCompanies } from "../api/api";
 export default function Landing() {
   const [isLoading, setIsLoading] = useState(true);
   const [companies, setCompanies] = useState<Company[]>([]);
-  const slug = "test-company";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getCompanies(slug);
+        const response = await getCompanies();
         setCompanies(response.companies);
         setIsLoading(false);
       } catch (error) {

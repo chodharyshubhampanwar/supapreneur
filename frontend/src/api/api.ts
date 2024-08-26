@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 
-const BASE_URL = "https://pwuk9ijj3c.execute-api.us-east-1.amazonaws.com/dev/companies";
+const BASE_URL = "https://n1xa36sfdh.execute-api.ap-south-1.amazonaws.com/dev/companies";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -68,8 +68,8 @@ export const getUserProfile = async (id: string) => {
   return response.data;
 };
 
-export const getCompanies = async (slug: string) => {
-  const response = await axiosInstance.get(`/${slug}`);
+export const getCompanies = async () => {
+  const response = await axiosInstance.get('');
   return response.data
 };
 
