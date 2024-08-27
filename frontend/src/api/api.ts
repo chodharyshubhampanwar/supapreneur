@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import {  VoteResponse } from "../types/types";
 
-const BASE_URL = "https://n1xa36sfdh.execute-api.ap-south-1.amazonaws.com/dev/companies";
+const BASE_URL = "https://n1xa36sfdh.execute-api.ap-south-1.amazonaws.com/dev";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -50,7 +51,7 @@ export const createUser = async (
   type: string
 ) => {
   try {
-    const response = await axiosInstance.post("/users", {
+    const response = await axiosInstance.post('users', {
       email,
       username: email,
       firebaseId,
@@ -69,8 +70,13 @@ export const getUserProfile = async (id: string) => {
 };
 
 export const getCompanies = async () => {
-  const response = await axiosInstance.get('');
+  const response = await axiosInstance.get('/companies');
   return response.data
+};
+
+export const voteCompany = async (companyId: string, userId: string): Promise<VoteResponse> => {
+  const response = await  axiosInstance.post<VoteResponse>('/upvote', { companyId, userId });
+  return response.data;
 };
 
 export default axiosInstance;

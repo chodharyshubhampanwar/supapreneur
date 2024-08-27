@@ -17,6 +17,8 @@ export interface Company {
   region: string;
   logo: string;
   sector: string;
+    voteCount: number;
+  isVoted: boolean;
 }
 
 interface Employee {
@@ -24,8 +26,6 @@ interface Employee {
   name: string;
   role: string;
 }
-
-
 
 export interface CompanyCardProps {
   companies: Company[];
@@ -74,4 +74,12 @@ export interface Profile {
   uid: string;
   avatar: string;
   username: string;
+}
+
+
+export interface VoteResponse {
+  action: 'added' | 'removed';
+  voteCount: number;
+  companyId: string;
+  message: string;
 }
