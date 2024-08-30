@@ -34,9 +34,7 @@ export default function Landing() {
           <CompanyCard companies={companies} />
         </main>
 
-        <aside className="hidden lg:flex flex-col p-4 bg-gray-100">
-          <footer className="mt-auto p-4 bg-gray-200">Footer Content</footer>
-        </aside>
+        <aside className="hidden lg:flex flex-col p-4 bg-gray-100"></aside>
       </div>
     </div>
   );

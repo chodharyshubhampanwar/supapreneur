@@ -35,16 +35,6 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const upvoteCompany = async (id: string) => {
-  const response = await axiosInstance.put(`/companies/${id}/upvote`);
-  return response.data;
-};
-
-export const checkIfUserUpvoted = async (id: string) => {
-  const response = await axiosInstance.get(`/companies/${id}/upvote-status`);
-  return response.data;
-};
-
 export const createUser = async (
   email: string,
   firebaseId: string,

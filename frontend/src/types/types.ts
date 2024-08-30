@@ -17,8 +17,9 @@ export interface Company {
   region: string;
   logo: string;
   sector: string;
-    voteCount: number;
-  isVoted: boolean;
+  upvotes: number
+  isVoted: boolean
+
 }
 
 interface Employee {
@@ -79,7 +80,6 @@ export interface Profile {
 
 export interface VoteResponse {
   action: 'added' | 'removed';
-  voteCount: number;
   companyId: string;
   message: string;
 }
