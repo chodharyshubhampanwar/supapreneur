@@ -1,7 +1,7 @@
 export interface Company {
-   id: string;
+  id: string;
   title: string;
-   employees: Employee[];
+  employees: Employee[];
   tagline: string;
   tags: string[];
   date_founded: string;
@@ -17,9 +17,8 @@ export interface Company {
   region: string;
   logo: string;
   sector: string;
-  upvotes: number
-  isVoted: boolean
-
+  upvotes: number;
+  isVoted: boolean;
 }
 
 interface Employee {
@@ -53,9 +52,8 @@ export interface UserProfile {
   isVerified: boolean;
   collaborating: boolean;
   criteria: string[];
-  firebaseId: string
+  firebaseId: string;
 }
-
 
 export interface Profile {
   _id: string;
@@ -78,9 +76,8 @@ export interface Profile {
   username: string;
 }
 
-
 export interface VoteResponse {
-  action: 'added' | 'removed';
+  action: "added" | "removed";
   companyId: string;
   message: string;
 }
@@ -89,4 +86,11 @@ export interface User {
   id: string;
   email: string;
   name: string | null;
+}
+
+export interface UserContextType {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  loading: boolean;
+  error: string | null;
 }

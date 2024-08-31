@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import {  VoteResponse, User } from "../types/types";
+import { VoteResponse, User } from "../types/types";
 
 const BASE_URL = "https://n1xa36sfdh.execute-api.ap-south-1.amazonaws.com/dev";
 
@@ -35,28 +35,19 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const createUser = async (
-  email: string,
-  firebaseId: string,
-  type: string
-) => {
-  try {
-    const response = await axiosInstance.post('users', {
-      email,
-      username: email,
-      firebaseId,
-      type,
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error creating user:", error);
-    throw error;
-  }
+export const createUser = async (email: string, firebaseId: string) => {
+  const response = await axiosInstance.post("/users", {
+    email,
+    firebaseId,
+  });
+  return response.data;
 };
 
 export const getUser = async (firebaseId: string): Promise<{ user: User }> => {
-    const response = await axiosInstance.get<{ user: User }>(`/users/${firebaseId}`);
-    return response.data;
+  const response = await axiosInstance.get<{ user: User }>(
+    `/users/${firebaseId}`
+  );
+  return response.data;
 };
 
 export const getUserProfile = async (id: string) => {
@@ -65,12 +56,23 @@ export const getUserProfile = async (id: string) => {
 };
 
 export const getCompanies = async () => {
-  const response = await axiosInstance.get('/companies');
-  return response.data
+  const response = await axiosInstance.get("/companies");
+  return response.data;
 };
 
-export const voteCompany = async (companyId: string, userId: string): Promise<VoteResponse> => {
-  const response = await  axiosInstance.post<VoteResponse>('/upvote', { companyId, userId });
+export const getCompany = async (slug: string) => {
+  const response = await axiosInstance.get(`/companies/${slug}`);
+  return response.data;
+};
+
+export const voteCompany = async (
+  companyId: string,
+  userId: string
+): Promise<VoteResponse> => {
+  const response = await axiosInstance.post<VoteResponse>("/upvote", {
+    companyId,
+    userId,
+  });
   return response.data;
 };
 

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Landing from "../pages/Landing";
-// import CompanyHome from "../pages/Company";
 import CompanyDetails from "../pages/Company";
 import ProfileEdit from "../pages/ProfileEdit";
 import Pitch from "../components/Pitch";
@@ -21,7 +20,7 @@ const routes: RouteObject[] = [
     exact: true,
   },
   {
-    path: "/company",
+    path: "/company/:slug",
     element: <CompanyDetails />,
     children: [
       {

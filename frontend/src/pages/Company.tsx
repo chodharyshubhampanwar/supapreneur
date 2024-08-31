@@ -1,66 +1,19 @@
-// import React, { useState, useEffect } from "react";
-// import { useParams, Outlet } from "react-router-dom";
-// import CompanyHeader from "../components/CompanyHeader";
-// // import Tags from "../components/Tags";
-// import Tabs from "../components/Tabs";
-// import { Company } from "../types/types";
-// import Header from "../components/Header";
-// import { CompanyProvider } from "../context/CompanyContext";
-
-// const CompanyHome: React.FC = () => {
-//   const { slug } = useParams<{ slug: string }>();
-//   const [company, setCompany] = useState<Company>();
-
-//   useEffect(() => {
-//     const fetchCompany = async () => {
-//       const response = await fetch(
-//         `https://pwuk9ijj3c.execute-api.us-east-1.amazonaws.com/dev/companies/${slug}`
-//       );
-//       const data = await response.json();
-//       setCompany(data.companies);
-//     };
-//     fetchCompany();
-//   }, [slug]);
-
-//   if (!company) {
-//     return <div>Loading...</div>;
-//   }
-
-//   return (
-//     <>
-//       <Header />
-//       <div className="max-w-4xl mx-auto p-4 bg-white min-h-screen">
-//         <CompanyHeader
-//           logo={company.logo}
-//           name={company.company_name}
-//           tagline={company.tagline}
-//         />
-//         {/* <Tags tags={company.tags} /> */}
-//         <Tabs company={company} />
-//         <CompanyProvider company={company}>
-//           <Outlet />
-//         </CompanyProvider>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default CompanyHome;
-
 import React, { useState, useEffect } from "react";
 import { Company } from "../types/types";
-import { getCompanies } from "../api/api";
+import { getCompany } from "../api/api";
 import { Facebook, Instagram, Linkedin, Globe } from "lucide-react";
+import { useParams } from "react-router-dom";
 
 const CompanyDetails: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
   const [isLoading, setIsLoading] = useState(true);
   const [company, setCompany] = useState<Company | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getCompanies();
-        setCompany(response.companies[0]);
+        const response = await getCompany(slug || "");
+        setCompany(response.company);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -68,7 +21,7 @@ const CompanyDetails: React.FC = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [slug]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -94,7 +47,11 @@ const CompanyDetails: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
             <h2 className="text-sm font-semibold text-gray-600">Founded</h2>
-            <p className="text-gray-800">{company?.date_founded}</p>
+            <p className="text-gray-800">
+              {company?.date_founded
+                ? new Date(company.date_founded).getFullYear()
+                : ""}
+            </p>
           </div>
           <div>
             <h2 className="text-sm font-semibold text-gray-600">Stage</h2>

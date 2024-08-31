@@ -7,19 +7,7 @@ import React, {
 } from "react";
 import { useAuth } from "./AuthContext";
 import { getUser } from "../api/api";
-
-interface User {
-  id: string;
-  email: string;
-  name: string | null;
-}
-
-interface UserContextType {
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-  loading: boolean;
-  error: string | null;
-}
+import { User, UserContextType } from "../types/types";
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
