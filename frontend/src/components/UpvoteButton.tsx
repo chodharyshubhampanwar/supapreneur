@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { PiArrowFatUpBold } from "react-icons/pi";
 import { Company, VoteResponse } from "../types/types";
 import { voteCompany } from "../api/api";
-import { useAuth } from "../context/AuthContext";
+import { useUser } from "../context/UserContext";
 import Modal from "./Modal";
 
 interface VoteButtonProps {
@@ -10,15 +10,10 @@ interface VoteButtonProps {
 }
 
 const VoteButton: React.FC<VoteButtonProps> = ({ company }) => {
-  const { user } = useAuth();
+  const { user } = useUser();
   const [isVoted, setIsVoted] = useState<boolean>(company.isVoted || false);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [animateCount, setAnimateCount] = useState<boolean>(false);
-
-  const userId = "8850fba0-eb33-490d-b54a-fbfd7feb1cb6";
-
-  console.log(company.id, userId);
 
   const handleVote = useCallback(async () => {
     if (!user) {
@@ -28,22 +23,14 @@ const VoteButton: React.FC<VoteButtonProps> = ({ company }) => {
 
     setIsLoading(true);
     try {
-      const response: VoteResponse = await voteCompany(company.id, userId);
+      const response: VoteResponse = await voteCompany(company.id, user.id);
       setIsVoted(response.action === "added");
-      setAnimateCount(true);
     } catch (error) {
       console.error("Error voting:", error);
     } finally {
       setIsLoading(false);
     }
   }, [user, company.id]);
-
-  useEffect(() => {
-    if (animateCount) {
-      const timer = setTimeout(() => setAnimateCount(false), 300);
-      return () => clearTimeout(timer);
-    }
-  }, [animateCount]);
 
   const handleCloseModal = useCallback(() => {
     setModalOpen(false);
@@ -70,9 +57,9 @@ const VoteButton: React.FC<VoteButtonProps> = ({ company }) => {
       </button>
       <span
         key={company.upvotes}
-        className={`text-sm font-semibold leading-5 transition-all duration-300 ease-in-out ${
-          animateCount ? "text-blue-600 animate-bounce" : "text-gray-700"
-        }`}
+        className={
+          "text-sm font-semibold leading-5 transition-all duration-300 ease-in-out"
+        }
       >
         {displayVoteCount}
       </span>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import {  VoteResponse } from "../types/types";
+import {  VoteResponse, User } from "../types/types";
 
 const BASE_URL = "https://n1xa36sfdh.execute-api.ap-south-1.amazonaws.com/dev";
 
@@ -52,6 +52,16 @@ export const createUser = async (
     console.error("Error creating user:", error);
     throw error;
   }
+};
+
+// export const getUser = async (firebaseId: string) => {
+//   const response = await axiosInstance.get(`/users/${firebaseId}`)
+//   return response.data
+// }
+
+export const getUser = async (firebaseId: string): Promise<{ user: User }> => {
+    const response = await axiosInstance.get<{ user: User }>(`/users/${firebaseId}`);
+    return response.data;
 };
 
 export const getUserProfile = async (id: string) => {

@@ -35,7 +35,7 @@ const routes: RouteObject[] = [
     ],
   },
   {
-    path: "/:username",
+    path: "/profile",
     element: <ProfilePage />,
   },
   {

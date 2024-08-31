@@ -53,6 +53,7 @@ export interface UserProfile {
   isVerified: boolean;
   collaborating: boolean;
   criteria: string[];
+  firebaseId: string
 }
 
 
@@ -82,4 +83,10 @@ export interface VoteResponse {
   action: 'added' | 'removed';
   companyId: string;
   message: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name: string | null;
 }
