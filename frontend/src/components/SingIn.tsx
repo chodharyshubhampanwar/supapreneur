@@ -52,6 +52,16 @@ const SocialLogin: React.FC = () => {
   return (
     <>
       {error && <p className="text-red-500 mb-2">{error}</p>}
+      {/* {user ? (
+            <Link
+              to={`/${user.email?.toLowerCase()}`}
+              className="text-gray-700 hover:text-gray-900"
+            >
+              <HiOutlineUserCircle size={32} />
+            </Link>
+          ) : (
+
+          )} */}
       {user ? (
         <button
           disabled={loading}

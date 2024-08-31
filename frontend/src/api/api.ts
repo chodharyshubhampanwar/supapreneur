@@ -54,11 +54,6 @@ export const createUser = async (
   }
 };
 
-// export const getUser = async (firebaseId: string) => {
-//   const response = await axiosInstance.get(`/users/${firebaseId}`)
-//   return response.data
-// }
-
 export const getUser = async (firebaseId: string): Promise<{ user: User }> => {
     const response = await axiosInstance.get<{ user: User }>(`/users/${firebaseId}`);
     return response.data;

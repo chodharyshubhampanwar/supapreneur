@@ -1,16 +1,10 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-// import Sign from "../components/SingIn";
 import SocialLogin from "../components/SingIn";
 
 const Header: React.FC = () => {
-  const { user } = useAuth();
-
-  console.log(user);
-
   return (
     <header className="flex box-border w-full max-h-16 min-h-16 px-4 py-0 border-b border-gray-200">
       <div className="flex w-full items-center justify-between">
@@ -34,16 +28,6 @@ const Header: React.FC = () => {
           </Link>
         </nav>
         <div className="flex items-center">
-          {/* {user ? (
-            <Link
-              to={`/${user.email?.toLowerCase()}`}
-              className="text-gray-700 hover:text-gray-900"
-            >
-              <HiOutlineUserCircle size={32} />
-            </Link>
-          ) : (
-
-          )} */}
           <SocialLogin />
         </div>
       </div>

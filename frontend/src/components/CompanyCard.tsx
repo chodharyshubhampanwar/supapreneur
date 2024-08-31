@@ -5,6 +5,7 @@ import UpvoteButton from "../components/UpvoteButton";
 // import { convertStringCase } from "../utils/string-conversion";
 
 const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
+  console.log(companies);
   return (
     <>
       {companies.map((company) => (
@@ -17,9 +18,9 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col">
               <Link to={`/company/${company.slug}`}>
-                <strong className="text-base font-semibold leading-6">
+                <span className="text-base font-semibold leading-6">
                   {company.title}
-                </strong>
+                </span>
               </Link>
 
               <p className="text-base font-normal leading-6 text-gray-600">
@@ -30,7 +31,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
               {company.tags.map((tag, index) => (
                 <React.Fragment key={tag}>
                   <span className="text-blue-600 text-xs font-medium">
-                    {convertStringCase(tag, "capital")}
+                    {tag}
                   </span>
                   {index < company.tags.length - 1 && (
                     <span className="text-12 text-light-gray opacity-45">
