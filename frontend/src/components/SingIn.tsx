@@ -55,7 +55,7 @@ const SocialLogin: React.FC = () => {
       <button
         disabled={loading}
         onClick={user ? handleLogout : handleLogin}
-        className="flex items-center justify-center px-5 py-2 bg-blue-600 text-white font-semibold rounded shadow disabled:opacity-70 disabled:cursor-not-allowed"
+        className="flex items-center justify-center px-5 py-2 bg-blue-600 text-white font-semibold rounded shadow disabled:opacity-70 disabled:cursor-not-allowed w-full"
       >
         {loading ? (
           <AiOutlineLoading className="animate-spin" />

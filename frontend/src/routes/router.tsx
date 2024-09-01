@@ -5,6 +5,7 @@ import ProfileEdit from "../pages/ProfileEdit";
 import Pitch from "../components/Pitch";
 import About from "../components/About";
 import ProfilePage from "../pages/Profile";
+import Investors from "../components/investors";
 
 interface RouteObject {
   exact?: boolean;
@@ -18,6 +19,10 @@ const routes: RouteObject[] = [
     path: "/",
     element: <Landing />,
     exact: true,
+  },
+  {
+    path: "/investors",
+    element: <Investors />,
   },
   {
     path: "/company/:slug",

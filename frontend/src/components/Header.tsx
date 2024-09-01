@@ -1,34 +1,29 @@
 import React from "react";
-import { HiOutlineBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import SocialLogin from "../components/SingIn";
+// import SocialLogin from "../components/SingIn";
 
 const Header: React.FC = () => {
   return (
     <header className="flex box-border w-full max-h-16 min-h-16 px-4 py-0 border-b border-gray-200">
       <div className="flex w-full items-center justify-between">
-        <div className="flex items-center">
-          <button className="md:hidden mr-4 bg-white rounded-md p-2">
-            <HiOutlineBars3 size={24} />
-          </button>
-          <Link to="/" className="text-xl font-bold">
+        <div className="flex items-center md:order-1">
+          <Link to="/" className="text-xl font-bold md:hidden absolute left-20">
+            <Logo />
+          </Link>
+          <Link to="/" className="text-xl font-bold hidden md:block">
             <Logo />
           </Link>
         </div>
-        <nav className="hidden md:flex space-x-8">
-          <Link to="/link1" className="text-gray-700 hover:text-gray-900">
-            Investors
-          </Link>
-          <Link to="/link2" className="text-gray-700 hover:text-gray-900">
-            Founders
-          </Link>
-          <Link to="/link3" className="text-gray-700 hover:text-gray-900">
-            Operators
-          </Link>
-        </nav>
-        <div className="flex items-center">
-          <SocialLogin />
+
+        <div className="flex items-center md:order-3">
+          <button
+            className="flex items-center justify-center w-full bg-zinc-950 p-2 rounded"
+            onClick={() => (window.location.href = "https://tally.so/r/wv4o2X")}
+          >
+            <span className="text-white text-center">Submit Pitch</span>
+            <span className="text-xs text-blue-500 ml-2">→</span>
+          </button>
         </div>
       </div>
     </header>

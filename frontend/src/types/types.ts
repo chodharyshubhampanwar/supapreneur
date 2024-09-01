@@ -94,3 +94,14 @@ export interface UserContextType {
   loading: boolean;
   error: string | null;
 }
+
+export interface NewsItem {
+  title: string;
+  description: string;
+  link: string;
+}
+
+export interface MenuItem {
+  text: string;
+  icon: string;
+}

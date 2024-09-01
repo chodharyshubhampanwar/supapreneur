@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Company } from "../types/types";
 import { getCompany } from "../api/api";
-import { Facebook, Instagram, Linkedin, Globe } from "lucide-react";
+import { Linkedin, Globe } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 const CompanyDetails: React.FC = () => {
@@ -111,26 +111,7 @@ const CompanyDetails: React.FC = () => {
                 <Globe size={24} />
               </a>
             )}
-            {company?.links.facebook && (
-              <a
-                href={company?.links.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <Facebook size={24} />
-              </a>
-            )}
-            {company?.links.instagram && (
-              <a
-                href={company?.links.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-800"
-              >
-                <Instagram size={24} />
-              </a>
-            )}
+
             {company?.links.linkedin && (
               <a
                 href={company.links.linkedin}
