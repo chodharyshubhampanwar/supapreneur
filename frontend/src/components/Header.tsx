@@ -5,7 +5,7 @@ import Logo from "./Logo";
 
 const Header: React.FC = () => {
   return (
-    <header className="flex box-border w-full max-h-16 min-h-16 px-4 py-0 border-b border-gray-200">
+    <header className="flex box-border w-full max-h-16 min-h-16 px-4 py-0 border-b-2 border-indigo-90">
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center md:order-1">
           <Link to="/" className="text-xl font-bold md:hidden absolute left-20">

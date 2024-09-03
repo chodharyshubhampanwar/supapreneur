@@ -1,18 +1,18 @@
-import React from "react";
-import { NewsItem as NewsItemType } from "../types/types";
+// import React from "react";
+// import { NewsItemProps } from "../types/types";
 
-const NewsItem: React.FC<NewsItemType> = ({ title, description, link }) => (
-  <a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block mb-4 hover:bg-gray-100 p-2 rounded transition-colors"
-  >
-    <div>
-      <h5 className="font-bold">{title}</h5>
-      <p className="text-sm text-gray-600">{description}</p>
-    </div>
-  </a>
-);
+// const NewsItem: React.FC<NewsItemProps> = ({
+//   newsItem,
+//   titleSize = "1.5rem",
+//   descriptionSize = "1rem",
+// }) => {
+//   return (
+//     <div>
+//       <h3 style={{ fontSize: titleSize }}>{newsItem.title}</h3>
+//       <p style={{ fontSize: descriptionSize }}>{newsItem.description}</p>
+//       <a href={newsItem.link}>Read more</a>
+//     </div>
+//   );
+// };
 
-export default NewsItem;
+// export default NewsItem;

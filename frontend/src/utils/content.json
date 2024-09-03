@@ -1,9 +1,5 @@
 {
-  "menuItems": [
-    { "text": "Companies", "icon": "Lightbulb" },
-    { "text": "Network", "icon": "User" },
-    { "text": "Investors", "icon": "DollarSign" }
-  ],
+  "menuItems": [{ "text": "Companies", "icon": "Lightbulb" }],
   "newsItems": [
     {
       "title": "Latest Investment Round",
@@ -21,5 +17,5 @@
       "link": "https://www.google.com"
     }
   ],
-  "copyright": "Copyright © 2024"
+  "copyright": "Copyright © Supapreneur 2024"
 }

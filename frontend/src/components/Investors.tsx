@@ -1,6 +1,4 @@
-import React from "react";
-
-const InvestorsHero = () => {
+const Investors = () => {
   return (
     <section className="bg-gray-100 py-16">
       <div className="container mx-auto flex flex-col md:flex-row items-center">
@@ -42,4 +40,4 @@ const InvestorsHero = () => {
   );
 };
 
-export default InvestorsHero;
+export default Investors;

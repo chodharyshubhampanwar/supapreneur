@@ -1,18 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Landing from "../pages/Landing";
-import CompanyDetails from "../pages/Company";
+import CompanyHome from "../pages/Company";
 import ProfileEdit from "../pages/ProfileEdit";
 import Pitch from "../components/Pitch";
-import About from "../components/About";
 import ProfilePage from "../pages/Profile";
-import Investors from "../components/investors";
-
-interface RouteObject {
-  exact?: boolean;
-  path: string;
-  element: JSX.Element;
-  children?: RouteObject[];
-}
+// import Investors from "../components/Investors";
+import { RouteObject } from "../types/types";
 
 const routes: RouteObject[] = [
   {
@@ -21,17 +14,9 @@ const routes: RouteObject[] = [
     exact: true,
   },
   {
-    path: "/investors",
-    element: <Investors />,
-  },
-  {
     path: "/company/:slug",
-    element: <CompanyDetails />,
+    element: <CompanyHome />,
     children: [
-      {
-        path: "",
-        element: <About />,
-      },
       {
         path: "pitch",
         element: <Pitch />,

@@ -76,4 +76,9 @@ export const voteCompany = async (
   return response.data;
 };
 
+// export const getNews = async () => {
+//   const response = await axiosInstance.get("/news");
+//   return response.data;
+// };
+
 export default axiosInstance;
