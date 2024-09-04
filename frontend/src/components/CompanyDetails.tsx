@@ -13,24 +13,6 @@ interface CompanyInfoProps {
   handleTabClick: (tab: "overview" | "team" | "review" | "updates") => void;
 }
 
-const productImages = [
-  {
-    id: "1",
-    url: "https://ph-files.imgix.net/f4a677c2-6045-455e-8208-5a506982e075.jpeg",
-    alt: "Product 1",
-  },
-  {
-    id: "2",
-    url: "https://ph-files.imgix.net/1912e55e-59cf-4913-a7a0-935c43f08929.jpeg",
-    alt: "Product 2",
-  },
-  {
-    id: "3",
-    url: "https://ph-files.imgix.net/10426b64-8e61-42b7-9233-68e44acbfb02.jpeg",
-    alt: "Product 3",
-  },
-];
-
 const CompanyInfo: React.FC<CompanyInfoProps> = ({
   company,
   activeTab,
@@ -76,36 +58,6 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
           >
             Overview
           </button>
-          {/* <button
-            className={`pb-2 font-medium ${
-              activeTab === "team"
-                ? "border-b-2 border-blue-500 text-blue-500"
-                : "text-gray-500 hover:text-gray-800"
-            }`}
-            onClick={() => handleTabClick("team")}
-          >
-            Team
-          </button>
-          <button
-            className={`pb-2 font-medium ${
-              activeTab === "review"
-                ? "border-b-2 border-blue-500 text-blue-500"
-                : "text-gray-500 hover:text-gray-800"
-            }`}
-            onClick={() => handleTabClick("review")}
-          >
-            Review
-          </button>
-          <button
-            className={`pb-2 font-medium ${
-              activeTab === "updates"
-                ? "border-b-2 border-blue-500 text-blue-500"
-                : "text-gray-500 hover:text-gray-800"
-            }`}
-            onClick={() => handleTabClick("updates")}
-          >
-            Updates
-          </button> */}
         </div>
 
         <div className="mt-6 sm:mt-8 md:mt-6 ">
@@ -115,15 +67,8 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
                 <div className="mt-4 sm:mt-8 md:mt-4 w-full">
                   <ProductStatusCard company={company} />
                 </div>
-                <ProductImageGrid images={productImages} />
-                {/* <h3 className="text-xl font-bold mt-4 sm:mt-8 md:mt-4">
-                  About
-                </h3>
-                <p className="text-gray-700 mt-2">{company.description}</p>
-                <h3 className="text-xl font-bold mt-4 sm:mt-8 md:mt-4">
-                  Tech Stack
-                </h3>
-                <TechTags /> */}
+                <ProductImageGrid images={company.product_images} />
+
                 <Pitch company={company} />
               </div>
             </>

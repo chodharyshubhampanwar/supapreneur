@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
-interface ProductImage {
-  id: string;
-  url: string;
-  alt: string;
-}
-
 interface ProductImageGridProps {
-  images: ProductImage[];
+  images: string[]; // Accept string array
 }
 
 const ProductImageGrid: React.FC<ProductImageGridProps> = ({ images }) => {
@@ -38,9 +32,8 @@ const ProductImageGrid: React.FC<ProductImageGridProps> = ({ images }) => {
       <div className="grid grid-cols-3 gap-2 md:gap-4">
         {images.map((image, index) => (
           <img
-            key={image.id}
-            src={image.url}
-            alt={image.alt}
+            key={index}
+            src={image}
             className="w-full h-32 md:h-48 object-cover cursor-pointer rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             onClick={() => openCarousel(index)}
           />
@@ -51,8 +44,7 @@ const ProductImageGrid: React.FC<ProductImageGridProps> = ({ images }) => {
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
           <div className="relative max-w-[1069px] max-h-[640px]">
             <img
-              src={images[selectedImageIndex].url}
-              alt={images[selectedImageIndex].alt}
+              src={images[selectedImageIndex]} // Show the selected image in the carousel
               className="max-w-full max-h-full object-contain"
             />
             <button
