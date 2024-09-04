@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
 
 const StyledLogo = styled.img`
   display: block;
@@ -18,7 +17,14 @@ const StyledLogo = styled.img`
 `;
 
 const Logo: React.FC = () => {
-  return <StyledLogo src={logo} alt="main-logo" />;
+  return (
+    <StyledLogo
+      src={
+        "https://res.cloudinary.com/duuxmszlf/image/upload/v1725433338/Scalership_g1kbxv.png"
+      }
+      alt="main-logo"
+    />
+  );
 };
 
 export default Logo;

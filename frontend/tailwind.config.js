@@ -17,6 +17,9 @@ export default {
         "fill-blue": "fill-blue 0.3s ease-in-out forwards",
         "unfill-blue": "unfill-blue 0.3s ease-in-out forwards",
       },
+      backgroundColor: {
+        "primary-color": "#0565FF",
+      },
     },
   },
   plugins: [],
