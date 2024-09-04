@@ -32,8 +32,8 @@ const MobileLayout: React.FC<LayoutProps> = ({ children }) => {
             </div>
             <Sidebar />
             <div className="flex-1 p-4 overflow-y-auto">
-              <h2 className="font-bold mb-4">News</h2>
-              {/* <NewsItems /> */}
+              <h2 className="font-bold">News</h2>
+              <NewsList />
             </div>
           </div>
         </div>

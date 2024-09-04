@@ -132,6 +132,7 @@ export interface VoteResponse {
   action: "added" | "removed";
   companyId: string;
   message: string;
+  voteCount: number;
 }
 
 export interface RouteObject {

@@ -8,6 +8,7 @@ import {
   Facebook,
   Twitter,
   Instagram,
+  Paperclip,
 } from "lucide-react";
 import { Company } from "../types/types";
 
@@ -44,16 +45,16 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ company }) => {
       {/* Website and Social Links */}
       <div className="flex items-center space-x-2">
         <LinkIcon className="w-4 h-4 text-gray-500" />
-        <a href={company.links.website} className="text-blue-600">
+        {/* <a href={company.links.website} className="text-blue-600">
           {company.links.website}
-        </a>
+        </a> */}
         {company.links.linkedin && (
           <a
             href={company.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Linkedin className="w-4 h-4 text-blue-600" />
+            <Linkedin className="w-4 h-4 text-gray-600" />
           </a>
         )}
         {company.links.facebook && (
@@ -81,6 +82,15 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ company }) => {
             rel="noopener noreferrer"
           >
             <Instagram className="w-4 h-4 text-blue-600" />
+          </a>
+        )}
+        {company.pitch_deck && (
+          <a
+            href={company.pitch_deck}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Paperclip className="w-4 h-4 text-gray-600" />
           </a>
         )}
       </div>

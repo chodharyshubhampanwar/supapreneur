@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Landing from "../pages/Landing";
 import CompanyHome from "../pages/Company";
 import ProfileEdit from "../pages/ProfileEdit";
-import Pitch from "../components/Pitch";
+// import Pitch from "../components/Pitch";
 import ProfilePage from "../pages/Profile";
 // import Investors from "../components/Investors";
 import { RouteObject } from "../types/types";
@@ -16,12 +16,6 @@ const routes: RouteObject[] = [
   {
     path: "/company/:slug",
     element: <CompanyHome />,
-    children: [
-      {
-        path: "pitch",
-        element: <Pitch />,
-      },
-    ],
   },
   {
     path: "/profile",

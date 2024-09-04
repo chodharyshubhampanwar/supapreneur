@@ -42,7 +42,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ companies }) => {
               ))}
             </div> */}
           </div>
-          <UpvoteButton company={company} />
+          <UpvoteButton company={company} onVoteChange={() => {}} />
         </div>
       ))}
     </>

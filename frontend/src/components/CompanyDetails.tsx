@@ -2,6 +2,10 @@ import React from "react";
 import { Company } from "../types/types";
 import ProductStatusCard from "./CompanyInfo";
 import ProductImageGrid from "./ProductImage";
+import ActionButtons from "./ActionButtons";
+import { convertStringCase } from "../utils/string-conversion";
+// import TechTags from "./TechStack";
+import Pitch from "./Pitch";
 
 interface CompanyInfoProps {
   company: Company;
@@ -47,13 +51,20 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
           <p className="text-gray-500">{company.tagline}</p>
           <div className="flex space-x-2 mt-2">
             <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-              {company.status}
+              {convertStringCase(company.stage, "capital")}
+            </span>
+            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+              {convertStringCase(company.sector, "capital")}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 sm:mt-8 md:mt-10">
+      <ActionButtons
+        onVisitClick={() => window.open(company.links.website, "_blank")}
+      />
+
+      <div className="mt-6 sm:mt-6 md:mt-6">
         <div className="flex space-x-6 border-b border-gray-200">
           <button
             className={`pb-2 font-medium ${
@@ -65,7 +76,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
           >
             Overview
           </button>
-          <button
+          {/* <button
             className={`pb-2 font-medium ${
               activeTab === "team"
                 ? "border-b-2 border-blue-500 text-blue-500"
@@ -94,7 +105,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
             onClick={() => handleTabClick("updates")}
           >
             Updates
-          </button>
+          </button> */}
         </div>
 
         <div className="mt-6 sm:mt-8 md:mt-6 ">
@@ -104,11 +115,16 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
                 <div className="mt-4 sm:mt-8 md:mt-4 w-full">
                   <ProductStatusCard company={company} />
                 </div>
-                <h3 className="text-xl font-bold mt-4 sm:mt-8 md:mt-4">
+                <ProductImageGrid images={productImages} />
+                {/* <h3 className="text-xl font-bold mt-4 sm:mt-8 md:mt-4">
                   About
                 </h3>
                 <p className="text-gray-700 mt-2">{company.description}</p>
-                <ProductImageGrid images={productImages} />
+                <h3 className="text-xl font-bold mt-4 sm:mt-8 md:mt-4">
+                  Tech Stack
+                </h3>
+                <TechTags /> */}
+                <Pitch company={company} />
               </div>
             </>
           )}

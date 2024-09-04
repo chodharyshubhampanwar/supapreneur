@@ -4,13 +4,18 @@ export default {
   theme: {
     extend: {
       keyframes: {
-        subtleBounce: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-5px)" },
+        "fill-blue": {
+          "0%": { fill: "rgba(156, 163, 175, 1)" }, // text-gray-400
+          "100%": { fill: "rgba(29, 78, 216, 1)" }, // text-blue-700
+        },
+        "unfill-blue": {
+          "0%": { fill: "rgba(29, 78, 216, 1)" }, // text-blue-700
+          "100%": { fill: "rgba(156, 163, 175, 1)" }, // text-gray-400
         },
       },
       animation: {
-        "subtle-bounce": "subtleBounce 0.5s ease-in-out",
+        "fill-blue": "fill-blue 0.3s ease-in-out forwards",
+        "unfill-blue": "unfill-blue 0.3s ease-in-out forwards",
       },
     },
   },

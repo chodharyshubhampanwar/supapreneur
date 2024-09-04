@@ -25,8 +25,8 @@ const newsData = [
 
 const NewsList: React.FC = () => {
   return (
-    <div className="max-w-md mx-auto bg-slate-200 shadow-md rounded-lg px-4 py-4">
-      <h1 className="text-xl font-bold text-gray-900 mb-2">What's Happening</h1>
+    <div className="max-w-md mx-auto   rounded-lg px-4 py-4">
+      <h1 className="text-lg font-bold text-gray-900 mb-2">What's Happening</h1>
       {newsData.map((news, index) => (
         <NewsCard
           key={index}
