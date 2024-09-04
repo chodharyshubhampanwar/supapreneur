@@ -1,4 +1,3 @@
-import React from "react";
 import TechTags from "./TechStack";
 import { Company } from "../types/types";
 

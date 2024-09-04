@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { PiArrowFatUpBold } from "react-icons/pi";
 import { Company, VoteResponse } from "../types/types";
 import { voteCompany } from "../api/api";
-import { useUser } from "../context/userContext";
+import { useUser } from "../context/UserContext";
 import Modal from "./Modal";
 
 interface VoteButtonProps {
