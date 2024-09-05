@@ -28,7 +28,7 @@ const ProductImageGrid: React.FC<ProductImageGridProps> = ({ images }) => {
   };
 
   return (
-    <div className="container mx-auto my-4">
+    <div className="container mx-auto mt-4 mb-10">
       <div className="grid grid-cols-3 gap-2 md:gap-4">
         {images.map((image, index) => (
           <img

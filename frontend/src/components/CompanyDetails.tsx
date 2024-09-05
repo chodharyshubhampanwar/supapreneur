@@ -1,7 +1,7 @@
 import React from "react";
 import { Company } from "../types/types";
 import ProductStatusCard from "./CompanyInfo";
-import ProductImageGrid from "./ProductImage";
+// import ProductImageGrid from "./ProductImage";
 import ActionButtons from "./ActionButtons";
 import { convertStringCase } from "../utils/string-conversion";
 // import TechTags from "./TechStack";
@@ -36,7 +36,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
               {convertStringCase(company.stage, "capital")}
             </span>
             <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-              {convertStringCase(company.sector, "capital")}
+              {convertStringCase(company.industry, "capital")}
             </span>
           </div>
         </div>
@@ -67,7 +67,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({
                 <div className="mt-4 sm:mt-8 md:mt-4 w-full">
                   <ProductStatusCard company={company} />
                 </div>
-                <ProductImageGrid images={company.product_images} />
+                {/* <ProductImageGrid images={company.product_images} /> */}
 
                 <Pitch company={company} />
               </div>
