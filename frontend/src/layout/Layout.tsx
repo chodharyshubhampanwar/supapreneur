@@ -10,6 +10,10 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+const handleViewAll = () => {
+  alert("You need to be a member to view all companies");
+};
+
 const MobileLayout: React.FC<LayoutProps> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -62,6 +66,12 @@ const DesktopLayout: React.FC<LayoutProps> = ({ children }) => (
       <Sidebar />
       <main className="flex-1 overflow-y-auto border-l-2 border-r-indigo-90 px-12 pt-4">
         {children}
+        <button
+          className="bg-blue-500 text-white p-2 rounded-md my-4 w-full"
+          onClick={handleViewAll}
+        >
+          View All
+        </button>
       </main>
       <aside className="flex flex-col w-80 p-4 ">
         <div className="flex-1 overflow-y-auto">

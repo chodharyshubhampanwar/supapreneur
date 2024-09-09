@@ -22,21 +22,11 @@ const Landing: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleViewAll = () => {
-    alert("You need to be a member to view all companies");
-  };
-
   return (
     <>
       {isLoading && <Loading />}
       <ResponsiveLayout>
         <CompanyCard companies={companies} />
-        <button
-          className="bg-blue-500 text-white p-2 rounded-md my-4 w-full"
-          onClick={handleViewAll}
-        >
-          View All
-        </button>
       </ResponsiveLayout>
     </>
   );
